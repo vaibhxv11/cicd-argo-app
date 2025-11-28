@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: demo-node-app
-          image: nodeapp1128.azurecr.io/demo-backend:031af9004966422d5adf4c0a6e058dcf462911f3
+          image: nodeapp1128.azurecr.io/demo-backend:765abb543c7492620b10a653603b52aa05887d27
           ports:
             - containerPort: 3000
           env:
