@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 env:
   IMAGE_NAME: demo-backend
 
@@ -17,6 +20,9 @@ jobs:
       # 1. Checkout code
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+         fetch-depth: 0
+         token: ${{ secrets.GITHUB_TOKEN }}
 
       # 5. Login to Azure
       - name: Azure Login
