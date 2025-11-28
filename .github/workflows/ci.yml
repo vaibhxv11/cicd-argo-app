@@ -42,3 +42,11 @@ jobs:
         run: |
           sed -i "s|image: ${{ secrets.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:.*|image: ${{ secrets.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}|g" k8s/deployment.yaml
 
+      - name: Commit & Push Deployment Update
+        run: |
+          git config user.email "ci-bot@example.com"
+          git config user.name "CI Bot"
+          git add k8s/deployment.yaml
+          git commit -m "Update deployment to image ${{ github.sha }}"
+          git push
+
