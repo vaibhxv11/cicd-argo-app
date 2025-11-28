@@ -37,3 +37,8 @@ jobs:
       - name: Push Docker Image
         run: |
           docker push ${{ secrets.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+      - name: Update Deployment YAML
+        run: |
+          sed -i "s|image: ${{ secrets.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:.*|image: ${{ secrets.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}|g" k8s/deployment.yaml
+
